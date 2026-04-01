@@ -1,22 +1,23 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
 
-const addressSchema = new mongoose.Schema({
-  label: { type: String, default: 'Maison' },
-  fullName: String, street: String, city: String,
-  country: { type: String, default: 'Sénégal' }, phone: String,
-  isDefault: { type: Boolean, default: false },
-})
-
 const userSchema = new mongoose.Schema({
   firstName: { type: String, required: true, trim: true },
   lastName:  { type: String, required: true, trim: true },
-  email:     { type: String, required: true, unique: true, lowercase: true },
+  email:     { type: String, required: true, unique: true, lowercase: true, trim: true },
   password:  { type: String, select: false },
-  googleId:  String, avatar: String,
   role:      { type: String, enum: ['user', 'admin'], default: 'user' },
-  isVerified:{ type: Boolean, default: false },
-  addresses: [addressSchema],
+  googleId:  { type: String },
+  avatar:    { type: String },
+  phone:     { type: String },
+  addresses: [{
+    fullName: String,
+    street:   String,
+    city:     String,
+    country:  { type: String, default: 'Sénégal' },
+    phone:    String,
+    isDefault: { type: Boolean, default: false },
+  }],
 }, { timestamps: true })
 
 userSchema.pre('save', async function (next) {
@@ -25,8 +26,8 @@ userSchema.pre('save', async function (next) {
   next()
 })
 
-userSchema.methods.comparePassword = function (plain) {
-  return bcrypt.compare(plain, this.password)
+userSchema.methods.comparePassword = function (candidate) {
+  return bcrypt.compare(candidate, this.password)
 }
 
 export default mongoose.model('User', userSchema)
