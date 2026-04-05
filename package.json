@@ -8,7 +8,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "seed": "node src/scripts/seed.js"
+    "seed": "node src/scripts/seed.js",
+    "create-admin": "node src/scripts/createAdmin.js"
   },
   "dependencies": {
     "express": "^4.18.2",

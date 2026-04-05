@@ -13,6 +13,13 @@ const productSchema = new mongoose.Schema({
   stock:       { type: Number, required: true, default: 0, min: 0 },
   featured:    { type: Boolean, default: false },
   isNew:       { type: Boolean, default: true },
+  isActive:    { type: Boolean, default: true },
+  lowStockAlert: { type: Number, default: 5 },
+  tags:        [{ type: String }],
+  seo: {
+    metaTitle:       { type: String },
+    metaDescription: { type: String },
+  },
   sales:       { type: Number, default: 0 },
 }, { timestamps: true })
 
