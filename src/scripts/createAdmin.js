@@ -9,7 +9,7 @@ async function createAdmin() {
   console.log('✅ MongoDB connecté')
 
   const email = 'fayteksolution@gmail.com'
-  const password = 'Faytek@2025!'
+  const password = 'Faytek@2026!'
 
   const existing = await User.findOne({ email })
   if (existing) {

@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
@@ -7,11 +8,11 @@ import './config/passport.js'
 import authRoutes from './routes/auth.routes.js'
 import productRoutes from './routes/product.routes.js'
 import categoryRoutes from './routes/category.routes.js'
+import collectionRoutes from './routes/collection.routes.js'
 import orderRoutes from './routes/order.routes.js'
 import paymentRoutes from './routes/payment.routes.js'
 import adminRoutes from './routes/admin.routes.js'
 import uploadRoutes from './routes/upload.routes.js'
-import 'dotenv/config'
 
 const app = express()
 connectDB()
@@ -56,6 +57,7 @@ app.use(passport.initialize())
 app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/categories', categoryRoutes)
+app.use('/api/collections', collectionRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/payment', paymentRoutes)
 app.use('/api/admin', adminRoutes)
