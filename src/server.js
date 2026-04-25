@@ -22,6 +22,8 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
   'https://chezantabada-frontend.vercel.app',
+  'https://antabada.shop',
+  'https://www.antabada.shop',
   process.env.FRONTEND_URL,
 ].filter(Boolean)
 
